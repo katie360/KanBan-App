@@ -1,0 +1,72 @@
+<div>
+  <nav class="navbar bg-dark border-bottom border-body" data-bs-theme="dark">
+    <div class="container-fluid">
+      <a class="navbar-brand gradient-text" href="#">KanBan App</a>
+    </div>
+  </nav>
+</div>
+
+
+<div class="container overflow-hidden text-center">
+  <div class="board ">
+    <h5>BoardName</h5>
+   </div>
+
+  <div class="row gx-5" cdkDropListGroup>
+    <div class="col-lg-3 col-md-12">
+      <div class="board-column">
+        <h6>Ideas</h6>
+        <div class="taskContainer container" cdkDropList
+        [cdkDropListData]="ideas"
+        (cdkDropListDropped)="drop($event)">
+          <div class="task" *ngFor="let idea of ideas" cdkDrag>
+            <p>{{idea}}</p>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+    <div class="col-lg-3 col-md-12">
+      <div  class="board-column" >
+        <h6>Research</h6>
+        <div class="taskContainer container" cdkDropList
+        [cdkDropListData]="research"
+        (cdkDropListDropped)="drop($event)">
+          <div class="task" *ngFor="let task of research" cdkDrag>
+            <p>{{task}}</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="col-lg-3 col-md-12">
+      <div  class="board-column" >
+        <h6>ToDo</h6>
+        <div class="taskContainer container" cdkDropList
+        [cdkDropListData]="todo"
+        (cdkDropListDropped)="drop($event)">
+          <div class="task" *ngFor="let item of todo" cdkDrag>
+            <p>{{item}}</p>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+    <div class="col-lg-3 col-md-12">
+      <div  class="board-column">
+        <h6>Done</h6>
+        <div class="taskContainer container" cdkDropList
+        [cdkDropListData]="done"
+        (cdkDropListDropped)="drop($event)">
+          <div class="task" *ngFor="let item of done" cdkDrag>
+            <p>{{item}}</p>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
