@@ -20,11 +20,11 @@
         [cdkDropListData]="ideas"
         (cdkDropListDropped)="drop($event)">
           <div class="task" *ngFor="let idea of ideas" cdkDrag>
-           <div class="task-content"><p>{{idea}} </p></div>
+           <div class="task-content"><p>{{ idea.title }} </p></div>
             <div class="task-icons"> <i class="bi bi-info-circle btn details-icon" title="Details"></i><i class="bi bi-pencil-fill btn pencil-icon" title="Edit"></i> <i class="bi bi-trash-fill btn trash-icon" title="Delete"></i></div>
           </div>
         </div>
-        <button class="add-idea-btn">
+        <button class="add-idea-btn" (click)="addIdea()">
           <i class="bi bi-plus-circle-fill"></i> Add Idea
         </button>
 
@@ -39,11 +39,11 @@
         [cdkDropListData]="research"
         (cdkDropListDropped)="drop($event)">
           <div class="task" *ngFor="let task of research" cdkDrag>
-            <div class="task-content"><p>{{task}} </p></div>
+            <div class="task-content"><p>{{task.title}} </p></div>
             <div class="task-icons"> <i class="bi bi-info-circle btn details-icon" title="Details"></i> <i class="bi bi-pencil-fill btn pencil-icon" title="Edit"></i>   <i class="bi bi-trash-fill btn trash-icon" title="Delete"></i></div>
           </div>
         </div>
-        <button class="add-idea-btn">
+        <button class="add-idea-btn" (click)="addResearch()">
           <i class="bi bi-plus-circle-fill"></i> Add Research
         </button>
       </div>
@@ -56,12 +56,12 @@
         [cdkDropListData]="todo"
         (cdkDropListDropped)="drop($event)">
           <div class="task" *ngFor="let item of todo" cdkDrag>
-            <div class="task-content"><p>{{item}} </p></div>
+            <div class="task-content"><p>{{item.title}} </p></div>
             <div class="task-icons"><i class="bi bi-info-circle btn details-icon" title="Details"></i> <i class="bi bi-pencil-fill btn pencil-icon" title="Edit"> </i> <i class="bi bi-trash-fill btn trash-icon"title="Delete"></i></div>
           </div>
 
         </div>
-        <button class="add-idea-btn">
+        <button class="add-idea-btn" (click)="addItem()">
           <i class="bi bi-plus-circle-fill"></i> Add item
         </button>
       </div>
@@ -74,7 +74,7 @@
         [cdkDropListData]="done"
         (cdkDropListDropped)="drop($event)">
           <div class="task" *ngFor="let item of done" cdkDrag>
-            <div class="task-content"><p>{{item}} </p></div>
+            <div class="task-content"><p>{{item.title}} </p></div>
             <div class="task-icons">  <i class="bi bi-info-circle btn details-icon"title="Details"></i> <i class="bi bi-archive-fill archive-icon btn"title="Archive"></i></div>
           </div>
 

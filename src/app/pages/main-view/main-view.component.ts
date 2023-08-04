@@ -7,7 +7,8 @@ import {
   moveItemInArray,
   transferArrayItem,
 } from '@angular/cdk/drag-drop';
-import { Board } from 'src/app/models/board.models';
+import { Task } from 'src/app/models/task.model';
+
 
 @Component({
   selector: 'app-main-view',
@@ -15,61 +16,74 @@ import { Board } from 'src/app/models/board.models';
   styleUrls: ['./main-view.component.css']
 })
 export class MainViewComponent {
-   ideas = [
-    'weekend getaway',
-    'project ideas',
-    ' new recipes',
-    ' reading list'
+  ideas: Task[] = [
+    { title: 'weekend getaway' },
+    { title: 'project ideas' },
+    { title: 'new recipes' },
+    { title: 'reading list' }
   ];
 
-   research = [
-    'vacation destinations',
-    'project technologies',
-    ' meal plans',
-    'Read reviews'
+  research: Task[] = [
+    { title: 'vacation destinations' },
+    { title: 'project technologies' },
+    { title: 'meal plans' },
+    { title: 'Read reviews' }
   ];
 
-   todo = [
-    'presentation slides',
-    'Buy groceries',
-    'Pay bills',
-    'Call a friend'
+  todo: Task[] = [
+    { title: 'presentation slides' },
+    { title: 'Buy groceries' },
+    { title: 'Pay bills' },
+    { title: 'Call a friend' }
   ];
 
-   done = [
-    ' work presentation',
-    ' delicious dinner',
-    'personal finances',
-    ' conversation'
+  done: Task[] = [
+    { title: 'work presentation' },
+    { title: 'delicious dinner' },
+    { title: 'personal finances' },
+    { title: 'conversation' }
   ];
 
+  addIdea() {
+    const newIdea: Task = {
+      title: 'New Idea',
+      description: 'Description here'
+    };
+    this.ideas.push(newIdea);
+    // Update local storage
+  }
+  addResearch() {
+    const newResearch: Task = {
+      title: 'New Research',
+      description: 'Description here'
+    };
+    this.research.push(newResearch);
+    // Update local storage
+  }
+  addItem() {
+    const newItem: Task = {
+      title: 'New Item',
+      description: 'Description here'
+    };
+    this.todo.push(newItem);
+    // Update local storage
+  }
 
-  // drop(event: CdkDragDrop<string[]>) {
-  //   if (event.previousContainer === event.container) {
-  //     moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
-  //   } else {
-  //     transferArrayItem(
-  //       event.previousContainer.data,
-  //       event.container.data,
-  //       event.previousIndex,
-  //       event.currentIndex,
-  //     );
-  //   }
-  // }
-  drop(event: CdkDragDrop<string[]>) {
+
+  drop(event: CdkDragDrop<Task[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
-      // Check if the source container still has items
-      if (event.previousContainer.data.length > 0) {
-        transferArrayItem(
-          event.previousContainer.data,
-          event.container.data,
-          event.previousIndex,
-          event.currentIndex,
-        );
-      }
+      // Handle transferring tasks between columns
+      transferArrayItem(
+        event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex
+      );
+      // Update local storage
     }
   }
+
 
 }
