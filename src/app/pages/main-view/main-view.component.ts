@@ -16,31 +16,31 @@ import { Board } from 'src/app/models/board.models';
 })
 export class MainViewComponent {
    ideas = [
-    'Plan a weekend getaway',
-    'Brainstorm project ideas',
-    'Explore new recipes',
-    'Create a reading list'
+    'weekend getaway',
+    'project ideas',
+    ' new recipes',
+    ' reading list'
   ];
 
    research = [
-    'Research vacation destinations',
-    'Investigate project technologies',
-    'Find healthy meal plans',
-    'Read reviews of recommended books'
+    'vacation destinations',
+    'project technologies',
+    ' meal plans',
+    'Read reviews'
   ];
 
    todo = [
-    'Finish presentation slides',
-    'Buy groceries for the week',
+    'presentation slides',
+    'Buy groceries',
     'Pay bills',
     'Call a friend'
   ];
 
    done = [
-    'Completed work presentation',
-    'Cooked a delicious dinner',
-    'Organized personal finances',
-    'Had a great conversation'
+    ' work presentation',
+    ' delicious dinner',
+    'personal finances',
+    ' conversation'
   ];
 
 
