@@ -19,12 +19,18 @@
         <div class="taskContainer container" cdkDropList
         [cdkDropListData]="ideas"
         (cdkDropListDropped)="drop($event)">
-          <div class="task" *ngFor="let idea of ideas" cdkDrag>
+          <div class="task" *ngFor="let idea of ideas ;let i = index" cdkDrag>
            <div class="task-content"><p>{{ idea.title }} </p></div>
             <div class="task-icons"> <i class="bi bi-info-circle btn details-icon" title="Details"></i><i class="bi bi-pencil-fill btn pencil-icon" title="Edit"></i> <i class="bi bi-trash-fill btn trash-icon" title="Delete"></i></div>
           </div>
+          <div *ngIf="isIdeaPopupVisible" class="add-item-popup">
+            <input type="text" placeholder="New research title" [(ngModel)]="newItemTitle" (keydown.enter)="addIdea()">
+            <textarea placeholder="Description" [(ngModel)]="newItemDescription"></textarea>
+            <!-- Button or action to add the item -->
+            <button (click)="addIdea()">Add</button>
+          </div>
         </div>
-        <button class="add-idea-btn" (click)="addIdea()">
+        <button class="add-idea-btn" (click)="showIdeaPopup()">
           <i class="bi bi-plus-circle-fill"></i> Add Idea
         </button>
 
@@ -38,12 +44,18 @@
         <div class="taskContainer container" cdkDropList
         [cdkDropListData]="research"
         (cdkDropListDropped)="drop($event)">
-          <div class="task" *ngFor="let task of research" cdkDrag>
+          <div class="task" *ngFor="let task of research ;let i = index" cdkDrag>
             <div class="task-content"><p>{{task.title}} </p></div>
-            <div class="task-icons"> <i class="bi bi-info-circle btn details-icon" title="Details"></i> <i class="bi bi-pencil-fill btn pencil-icon" title="Edit"></i>   <i class="bi bi-trash-fill btn trash-icon" title="Delete"></i></div>
+            <div class="task-icons"> <i class="bi bi-info-circle btn details-icon" title="Details"></i> <i class="bi bi-pencil-fill btn pencil-icon" title="Edit"></i>   <i class="bi bi-trash-fill btn trash-icon" title="Delete" (click)="deleteItem(research,i)"></i></div>
+          </div>
+          <div *ngIf="isResearchPopupVisible" class="add-item-popup">
+            <input type="text" placeholder="New research title" [(ngModel)]="newItemTitle" (keydown.enter)="addResearch()">
+            <textarea placeholder="Description" [(ngModel)]="newItemDescription"></textarea>
+            <!-- Button or action to add the item -->
+            <button (click)="addResearch()">Add</button>
           </div>
         </div>
-        <button class="add-idea-btn" (click)="addResearch()">
+        <button class="add-idea-btn"  (click)="showResearchPopup()">
           <i class="bi bi-plus-circle-fill"></i> Add Research
         </button>
       </div>
@@ -55,13 +67,18 @@
         <div class="taskContainer container" cdkDropList
         [cdkDropListData]="todo"
         (cdkDropListDropped)="drop($event)">
-          <div class="task" *ngFor="let item of todo" cdkDrag>
+          <div class="task" *ngFor="let item of todo; let i = index" cdkDrag>
             <div class="task-content"><p>{{item.title}} </p></div>
-            <div class="task-icons"><i class="bi bi-info-circle btn details-icon" title="Details"></i> <i class="bi bi-pencil-fill btn pencil-icon" title="Edit"> </i> <i class="bi bi-trash-fill btn trash-icon"title="Delete"></i></div>
+            <div class="task-icons"><i class="bi bi-info-circle btn details-icon" title="Details"></i> <i class="bi bi-pencil-fill btn pencil-icon" title="Edit"> </i> <i class="bi bi-trash-fill btn trash-icon" title="Delete" (click)="deleteItem(todo, i)"></i></div>
           </div>
-
+          <div *ngIf="isAddPopupVisible" class="add-item-popup">
+            <input type="text" placeholder="New item title" [(ngModel)]="newItemTitle" (keydown.enter)="addItem()">
+            <textarea placeholder="Description" [(ngModel)]="newItemDescription"></textarea>
+            <!-- Button or action to add the item -->
+            <button (click)="addItem()">Add</button>
+          </div>
         </div>
-        <button class="add-idea-btn" (click)="addItem()">
+        <button class="add-idea-btn" (click)="showAddPopup()">
           <i class="bi bi-plus-circle-fill"></i> Add item
         </button>
       </div>

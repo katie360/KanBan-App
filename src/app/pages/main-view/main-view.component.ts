@@ -44,30 +44,72 @@ export class MainViewComponent {
     { title: 'conversation' }
   ];
 
+  isAddPopupVisible = false;
+  isResearchPopupVisible = false;
+  isIdeaPopupVisible = false;
+
+  newItemTitle: string = '';
+  newItemDescription: string = '';
+
+  showAddPopup() {
+    this.isAddPopupVisible = true;
+  }
+  showResearchPopup() {
+    this.isResearchPopupVisible  = true;
+  }
+  showIdeaPopup() {
+    this.isIdeaPopupVisible = true;
+  }
+
+
   addIdea() {
     const newIdea: Task = {
-      title: 'New Idea',
-      description: 'Description here'
+      title: this.newItemTitle,
+      description: this.newItemDescription,
     };
     this.ideas.push(newIdea);
-    // Update local storage
+    this.newItemTitle = '';
+    this.newItemDescription = '';
+    this.isIdeaPopupVisible = false;
   }
-  addResearch() {
-    const newResearch: Task = {
-      title: 'New Research',
-      description: 'Description here'
-    };
-    this.research.push(newResearch);
-    // Update local storage
+
+  //research colum
+
+  addResearch(){
+    const  newResearch:Task = {
+      title:this.newItemTitle,
+      description:this.newItemDescription
+    }
+
+    this.research.push(newResearch)
+    this.newItemTitle = '';
+    this.newItemDescription = '';
+    this.isResearchPopupVisible = false;
   }
+
+  //todo column
+
   addItem() {
     const newItem: Task = {
-      title: 'New Item',
-      description: 'Description here'
+      title: this.newItemTitle,
+      description: this.newItemDescription
     };
+
     this.todo.push(newItem);
-    // Update local storage
+
+    this.newItemTitle = '';
+    this.newItemDescription = '';
+    this.isAddPopupVisible = false;
   }
+
+
+  deleteItem(column: Task[], index: number) {
+    column.splice(index, 1);
+  }
+
+
+
+
 
 
   drop(event: CdkDragDrop<Task[]>) {

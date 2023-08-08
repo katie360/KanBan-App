@@ -57,9 +57,7 @@
   align-items: center;
 
 }
-.task-content {
-  flex: 1; /* Take available space */
-}
+
 .task-icons .pencil-icon{
   color: rgb(102, 171, 255);
 }
