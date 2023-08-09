@@ -21,16 +21,20 @@
         (cdkDropListDropped)="drop($event)">
           <div class="task" *ngFor="let idea of ideas ;let i = index" cdkDrag>
            <div class="task-content"><p>{{ idea.title }} </p></div>
-            <div class="task-icons"> <i class="bi bi-info-circle btn details-icon" title="Details"></i><i class="bi bi-pencil-fill btn pencil-icon" title="Edit"></i> <i class="bi bi-trash-fill btn trash-icon" title="Delete"></i></div>
+            <div class="task-icons"> <i class="bi bi-info-circle btn details-icon" title="Details"></i><i class="bi bi-pencil-fill btn pencil-icon" title="Edit"></i> <i class="bi bi-trash-fill btn trash-icon" title="Delete"  (click)="deleteItem(ideas,i)"></i></div>
           </div>
-          <div *ngIf="isIdeaPopupVisible" class="add-item-popup">
-            <input type="text" placeholder="New research title" [(ngModel)]="newItemTitle" (keydown.enter)="addIdea()">
-            <textarea placeholder="Description" [(ngModel)]="newItemDescription"></textarea>
+          <div *ngIf="isIdeaPopupVisible" class="overlay">
+            <div class="add-item-popup ">
+              <div class="btn close-icon" (click)="hideIdeaPopup()"><i class="bi bi-x-circle"></i></div>
+                <input type="text" placeholder="Research title" [(ngModel)]="newItemTitle" (keydown.enter)="addIdea()">
+                <textarea placeholder="Description" [(ngModel)]="newItemDescription"></textarea>
             <!-- Button or action to add the item -->
-            <button (click)="addIdea()">Add</button>
+            <button (click)="addIdea()">Add task</button>
+            </div>
+
           </div>
         </div>
-        <button class="add-idea-btn" (click)="showIdeaPopup()">
+        <button class="add-btn" (click)="showIdeaPopup()">
           <i class="bi bi-plus-circle-fill"></i> Add Idea
         </button>
 
@@ -48,14 +52,21 @@
             <div class="task-content"><p>{{task.title}} </p></div>
             <div class="task-icons"> <i class="bi bi-info-circle btn details-icon" title="Details"></i> <i class="bi bi-pencil-fill btn pencil-icon" title="Edit"></i>   <i class="bi bi-trash-fill btn trash-icon" title="Delete" (click)="deleteItem(research,i)"></i></div>
           </div>
-          <div *ngIf="isResearchPopupVisible" class="add-item-popup">
-            <input type="text" placeholder="New research title" [(ngModel)]="newItemTitle" (keydown.enter)="addResearch()">
-            <textarea placeholder="Description" [(ngModel)]="newItemDescription"></textarea>
-            <!-- Button or action to add the item -->
-            <button (click)="addResearch()">Add</button>
-          </div>
+
+            <div *ngIf="isResearchPopupVisible" class=" overlay">
+              <div class="add-item-popup">
+                <div class="btn close-icon" (click)="hideResearchPopup()"><i class="bi bi-x-circle"></i></div>
+                <input type="text" placeholder="New research title" [(ngModel)]="newItemTitle" (keydown.enter)="addResearch()">
+                <textarea placeholder="Description" [(ngModel)]="newItemDescription"></textarea>
+                <!-- Button or action to add the item -->
+                <button (click)="addResearch()">Add</button>
+              </div>
+
+            </div>
+
+
         </div>
-        <button class="add-idea-btn"  (click)="showResearchPopup()">
+        <button class="add-btn"  (click)="showResearchPopup()">
           <i class="bi bi-plus-circle-fill"></i> Add Research
         </button>
       </div>
@@ -71,14 +82,19 @@
             <div class="task-content"><p>{{item.title}} </p></div>
             <div class="task-icons"><i class="bi bi-info-circle btn details-icon" title="Details"></i> <i class="bi bi-pencil-fill btn pencil-icon" title="Edit"> </i> <i class="bi bi-trash-fill btn trash-icon" title="Delete" (click)="deleteItem(todo, i)"></i></div>
           </div>
-          <div *ngIf="isAddPopupVisible" class="add-item-popup">
-            <input type="text" placeholder="New item title" [(ngModel)]="newItemTitle" (keydown.enter)="addItem()">
-            <textarea placeholder="Description" [(ngModel)]="newItemDescription"></textarea>
-            <!-- Button or action to add the item -->
-            <button (click)="addItem()">Add</button>
+
+          <div *ngIf="isAddPopupVisible" class=" overlay">
+            <div class="add-item-popup">
+              <div class="btn close-icon" (click)="hideTodoPopup()"><i class="bi bi-x-circle"></i></div>
+              <input type="text" placeholder="New item title" [(ngModel)]="newItemTitle" (keydown.enter)="addItem()">
+              <textarea placeholder="Description" [(ngModel)]="newItemDescription"></textarea>
+              <!-- Button or action to add the item -->
+              <button (click)="addItem()">Add</button>
+            </div>
+
           </div>
         </div>
-        <button class="add-idea-btn" (click)="showAddPopup()">
+        <button class="add-btn" (click)="showAddPopup()">
           <i class="bi bi-plus-circle-fill"></i> Add item
         </button>
       </div>
@@ -100,4 +116,5 @@
 
     </div>
   </div>
-</div>
+
+

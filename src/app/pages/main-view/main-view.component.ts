@@ -60,6 +60,15 @@ export class MainViewComponent {
   showIdeaPopup() {
     this.isIdeaPopupVisible = true;
   }
+  hideIdeaPopup(){
+    this.isIdeaPopupVisible = false;
+  }
+  hideResearchPopup(){
+    this.isResearchPopupVisible = false;
+  }
+  hideTodoPopup(){
+    this.isAddPopupVisible  = false;
+  }
 
 
   addIdea() {
