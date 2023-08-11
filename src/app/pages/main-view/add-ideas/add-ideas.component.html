@@ -1,0 +1,28 @@
+
+<div class="board-column" *ngFor="let column of columns">
+  <h6>{{column.title}}</h6>
+  <div class="taskContainer container" cdkDropList
+  [cdkDropListData]="column.tasks"
+  (cdkDropListDropped)="drop($event)">
+    <div class="task" *ngFor="let idea of column.tasks;let i = index" cdkDrag>
+     <div class="task-content"><p>{{ idea.title }} </p></div>
+      <div class="task-icons"> <i class="bi bi-info-circle btn details-icon" title="Details"></i><i class="bi bi-dash-circle btn trash-icon" title="Delete"  (click)="deleteIdea(i)"></i></div>
+    </div>
+
+    <div *ngIf="isIdeaPopupVisible" class="overlay">
+      <div class="add-item-popup ">
+        <div class="btn close-icon" (click)="hideIdeaPopup()"><i class="bi bi-x-circle"></i></div>
+          <input type="text" placeholder="Research title" [(ngModel)]="newItemTitle" (keydown.enter)="addIdea()">
+          <textarea placeholder="Description" [(ngModel)]="newItemDescription"></textarea>
+      <!-- Button or action to add the item -->
+      <button (click)="addIdea()">Add task</button>
+      </div>
+
+    </div>
+
+  </div>
+  <button class="add-btn" (click)="showIdeaPopup()">
+    <i class="bi bi-plus-circle-fill"></i> Add Idea
+  </button>
+
+ </div>

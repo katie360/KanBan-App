@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,Output,EventEmitter ,OnInit} from '@angular/core';
 import {
   CdkDragDrop,
   CdkDrag,
@@ -7,7 +7,7 @@ import {
   moveItemInArray,
   transferArrayItem,
 } from '@angular/cdk/drag-drop';
-import { Task } from 'src/app/models/task.model';
+import { TaskServiceService } from 'src/app/services/task-services/task-service.service';
 
 
 @Component({
@@ -15,126 +15,25 @@ import { Task } from 'src/app/models/task.model';
   templateUrl: './main-view.component.html',
   styleUrls: ['./main-view.component.css']
 })
-export class MainViewComponent {
-  ideas: Task[] = [
-    { title: 'weekend getaway' },
-    { title: 'project ideas' },
-    { title: 'new recipes' },
-    { title: 'reading list' }
-  ];
+export class MainViewComponent  {
 
-  research: Task[] = [
-    { title: 'vacation destinations' },
-    { title: 'project technologies' },
-    { title: 'meal plans' },
-    { title: 'Read reviews' }
-  ];
+constructor(private _taskService :TaskServiceService){}
 
-  todo: Task[] = [
-    { title: 'presentation slides' },
-    { title: 'Buy groceries' },
-    { title: 'Pay bills' },
-    { title: 'Call a friend' }
-  ];
+  // ngOnInit(){
+  //     this._taskService.fetchTaskData()
+  //     .subscribe( data =>
+  //                 {this._taskService.columns = data;
+  //                 });
+  // }
 
-  done: Task[] = [
-    { title: 'work presentation' },
-    { title: 'delicious dinner' },
-    { title: 'personal finances' },
-    { title: 'conversation' }
-  ];
+  // selectedTask: Task | null = null;
+  // showDetailsPopup = false;
 
-  isAddPopupVisible = false;
-  isResearchPopupVisible = false;
-  isIdeaPopupVisible = false;
+  // showDetails(task: Task): void {
+  //   this.selectedTask = task;
+  //   this.showDetailsPopup = true;
+  // }
 
-  newItemTitle: string = '';
-  newItemDescription: string = '';
-
-  showAddPopup() {
-    this.isAddPopupVisible = true;
-  }
-  showResearchPopup() {
-    this.isResearchPopupVisible  = true;
-  }
-  showIdeaPopup() {
-    this.isIdeaPopupVisible = true;
-  }
-  hideIdeaPopup(){
-    this.isIdeaPopupVisible = false;
-  }
-  hideResearchPopup(){
-    this.isResearchPopupVisible = false;
-  }
-  hideTodoPopup(){
-    this.isAddPopupVisible  = false;
-  }
-
-
-  addIdea() {
-    const newIdea: Task = {
-      title: this.newItemTitle,
-      description: this.newItemDescription,
-    };
-    this.ideas.push(newIdea);
-    this.newItemTitle = '';
-    this.newItemDescription = '';
-    this.isIdeaPopupVisible = false;
-  }
-
-  //research colum
-
-  addResearch(){
-    const  newResearch:Task = {
-      title:this.newItemTitle,
-      description:this.newItemDescription
-    }
-
-    this.research.push(newResearch)
-    this.newItemTitle = '';
-    this.newItemDescription = '';
-    this.isResearchPopupVisible = false;
-  }
-
-  //todo column
-
-  addItem() {
-    const newItem: Task = {
-      title: this.newItemTitle,
-      description: this.newItemDescription
-    };
-
-    this.todo.push(newItem);
-
-    this.newItemTitle = '';
-    this.newItemDescription = '';
-    this.isAddPopupVisible = false;
-  }
-
-
-  deleteItem(column: Task[], index: number) {
-    column.splice(index, 1);
-  }
-
-
-
-
-
-
-  drop(event: CdkDragDrop<Task[]>) {
-    if (event.previousContainer === event.container) {
-      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
-    } else {
-      // Handle transferring tasks between columns
-      transferArrayItem(
-        event.previousContainer.data,
-        event.container.data,
-        event.previousIndex,
-        event.currentIndex
-      );
-      // Update local storage
-    }
-  }
 
 
 }

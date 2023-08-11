@@ -4,3 +4,8 @@ export interface Task {
   attachments?: string[];
   dueDate?: Date;
 }
+
+export interface Column {
+  title: string;
+  tasks: Task[];
+}

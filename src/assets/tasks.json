@@ -1,0 +1,38 @@
+[
+  {
+    "title": "Ideas",
+    "tasks": [
+      { "title": "weekend getaway" },
+      { "title": "project ideas" },
+      { "title": "new recipes" },
+      { "title": "reading list" }
+    ]
+  },
+  {
+    "title": "Research",
+    "tasks": [
+      { "title": "vacation destinations" },
+      { "title": "project technologies" },
+      { "title": "meal plans" },
+      { "title": "Read reviews" }
+    ]
+  },
+  {
+    "title": "ToDo",
+    "tasks": [
+      { "title": "presentation slides" },
+      { "title": "Buy groceries" },
+      { "title": "Pay bills" },
+      { "title": "Call a friend" }
+    ]
+  },
+  {
+    "title": "Done",
+    "tasks": [
+      { "title": "work presentation" },
+      { "title": "delicious dinner" },
+      { "title": "personal finances" },
+      { "title": "conversation" }
+    ]
+  }
+]
